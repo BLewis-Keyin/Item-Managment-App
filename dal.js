@@ -5,7 +5,7 @@ const pool = require('./db')
 // Function to retrieve all items from the database
 const getAllItems = async() => {
     try {
-        const result = await pool.query('SELECT * FROM main_table'); // Replace main_table with your actual table name
+        const result = await pool.query('SELECT * FROM main_table'); //
         return result.rows;
     } catch (error) {
         console.error('Error retrieving items from the database:', error);
