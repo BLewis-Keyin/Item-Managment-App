@@ -4,6 +4,9 @@ const express = require('express');
 const methodOverride = require('method-override');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const apiRoutes = require('./routes/apiRoutes');
+const uiRoutes = require('./routes/uiRoutes');
+
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -19,8 +22,7 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
-const apiRoutes = require('./routes/apiRoutes');
-const uiRoutes = require('./routes/uiRoutes');
+
 
 // Routes
 app.use('/api', apiRoutes);

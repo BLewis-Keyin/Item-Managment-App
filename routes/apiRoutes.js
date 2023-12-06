@@ -15,7 +15,7 @@ router.get('/items', async(req, res) => {
 
 // GET a single item by ID
 router.get('/items/:id', async(req, res) => {
-    const itemId = req.params.id;
+    const itemId = parseInt(req.params.id, 10);
     try {
         const item = await dal.getItemById(itemId);
         if (!item) {
