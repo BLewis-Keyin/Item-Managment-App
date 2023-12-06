@@ -1,7 +1,8 @@
 // tests/item-api-tests.js
 
 const request = require('supertest');
-const app = require('../index'); // Replace with the actual path to your Express app
+const { app } = require('../index.js');
+const itemId = 1;
 
 describe('Item API Endpoints', () => {
     let itemId;

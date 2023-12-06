@@ -4,6 +4,7 @@ const router = express.Router();
 const { getAllItems } = require('../dal');
 const { getItemById } = require('../dal');
 const { addItem } = require('../dal');
+const { updateItem } = require('../dal');
 
 
 
@@ -61,6 +62,51 @@ router.get('/items/:id', async(req, res) => {
     } catch (error) {
         console.error('Error retrieving item details from the database:', error);
         res.status(500).send('Internal Server Error');
+    }
+});
+
+router.get('/items/:id/edit', async(req, res) => {
+    const itemId = parseInt(req.params.id, 10);
+    try {
+        const item = await getItemById(itemId);
+        if (!item) {
+            return res.status(404).render('not-found');
+        }
+        res.render('edit', { item });
+    } catch (error) {
+        console.error('Error retrieving item details for edit:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+router.put('/items/:id', async(req, res) => {
+    const itemId = parseInt(req.params.id, 10);
+    const updatedItem = req.body;
+
+    try {
+        const result = await updateItem(itemId, updatedItem);
+        if (!result) {
+            return res.status(404).json({ error: 'Item not found' });
+        }
+        res.redirect(`/items/${itemId}`);
+    } catch (error) {
+        console.error('Error updating item in the database:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+router.post('/items/:id/edit', async(req, res) => {
+    const itemId = parseInt(req.params.id, 10);
+    const updatedFields = req.body;
+    try {
+        const result = await updateItem(itemId, updatedFields);
+        if (!result) {
+            return res.status(404).json({ error: 'Item not found' });
+        }
+        res.redirect(`/items/${itemId}`); // Redirect to the item details page after editing
+    } catch (error) {
+        console.error('Error updating item:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 

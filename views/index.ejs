@@ -7,6 +7,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item List</title>
+    <style>
+        li {
+            border: 1px solid black;
+            padding: 10px;
+            list-style: none;
+            margin-bottom: 2px;
+            border-radius: 10px;
+            width: 20%;
+            background-color: rgba(137, 180, 219, 0.418)
+        }
+    </style>
 </head>
 
 <body>
@@ -14,8 +25,10 @@
     <ul>
         <% items.forEach(item => { %>
             <li>
-                <%= item.name %> -
-                    <%= item.description %> <a href="/items/<%= item.id %>">View Details</a>
+                <h3><b><%= item.name %> - </b></h3>
+                <%= item.description %>
+                    <a href="/items/<%= item.id %>"><br/>View Details</a>
+                    <a href="/items/<%= item.id %>/edit"><br/>Edit</a>
             </li>
             <% }); %>
     </ul>

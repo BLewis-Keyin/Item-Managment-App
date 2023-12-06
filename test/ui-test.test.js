@@ -1,7 +1,8 @@
 // tests/ui-tests.js
 
 const request = require('supertest');
-const app = require('../index'); // Replace with the actual path to your Express app
+const { app } = require('../index.js');
+const itemId = 1;
 
 describe('UI Endpoints', () => {
     it('should render the item list page', async() => {

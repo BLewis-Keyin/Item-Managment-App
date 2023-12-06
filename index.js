@@ -29,3 +29,5 @@ app.use('/api', apiRoutes);
 app.use('/', uiRoutes);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+module.exports = { app };
