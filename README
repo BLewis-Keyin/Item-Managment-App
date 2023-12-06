@@ -1,1 +1,52 @@
+Simple Node.js Item Management App
+Overview
 
+This is a simple Node.js application to manage items. You can view, add, edit, and delete items using a web interface.
+How to Run
+
+    Install Node.js:
+    Make sure you have Node.js installed on your computer. You can download it from nodejs.org.
+
+    Clone the Repository:
+    Clone this repository to your local machine using the following command:
+
+    bash
+
+git clone https://github.com/your-username/your-repo.git
+
+Install Dependencies:
+Navigate to the project folder and install the required dependencies using:
+
+bash
+
+npm install
+
+Set Up the Database:
+Ensure you have a PostgreSQL database running. Update the database configuration in db.js with your connection details.
+
+Run the Application:
+Start the application by running:
+
+bash
+
+    npm start
+
+    The app will be accessible at http://localhost:3000.
+
+Features
+
+    View Items:
+    Open your web browser and go to http://localhost:3000 to see a list of items.
+
+    Add New Item:
+    Click on "Add New Item" to add a new item. Fill in the details and hit "Add Item."
+
+    Edit Item:
+    To edit an item, click on "Edit" next to the item you want to modify. Make changes and hit "Update Item."
+
+    Delete Item:
+    Click on "Delete" next to an item to remove it from the list.
+
+Known Issues
+
+    If you encounter any problems, feel free to reach out for support.
