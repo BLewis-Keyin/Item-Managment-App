@@ -5,6 +5,7 @@ const { getAllItems } = require('../dal');
 const { getItemById } = require('../dal');
 const { addItem } = require('../dal');
 const { updateItem } = require('../dal');
+const { deleteItem } = require('../dal');
 
 
 
@@ -33,7 +34,6 @@ router.get('/items', async(req, res) => {
     }
 });
 router.get('/items/new', (req, res) => {
-    // Render a form or any UI for adding a new item
     res.render('new');
 });
 
@@ -42,7 +42,7 @@ router.post('/items', async(req, res) => {
 
     try {
         const addedItem = await addItem(newItem);
-        res.redirect('/items'); // Redirect to the items page after adding a new item
+        res.redirect('/'); // Redirect
     } catch (error) {
         console.error('Error adding item to the database:', error);
         res.status(500).send('Internal Server Error');
@@ -103,12 +103,24 @@ router.post('/items/:id/edit', async(req, res) => {
         if (!result) {
             return res.status(404).json({ error: 'Item not found' });
         }
-        res.redirect(`/items/${itemId}`); // Redirect to the item details page after editing
+        res.redirect(`/`); // Redirect 
     } catch (error) {
         console.error('Error updating item:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
-
+router.delete('/items/:id', async(req, res) => {
+    const itemId = parseInt(req.params.id, 10);
+    try {
+        const result = await deleteItem(itemId);
+        if (!result) {
+            return res.status(404).json({ error: 'Item not found' });
+        }
+        res.redirect(`/`); // Redirect 
+    } catch (error) {
+        console.error('Error deleting item:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
 module.exports = router;
